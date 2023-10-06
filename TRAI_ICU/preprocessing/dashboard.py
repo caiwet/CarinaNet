@@ -13,7 +13,8 @@ from Dataset import dataset
 
 def _get_annot_indices(data_summary):
     try :
-        elements = ['APEX', 'CARINA', 'ETT', 'position', 'qualite']
+        # elements = ['APEX', 'CARINA', 'ETT', 'position', 'qualite']
+        elements = ['CARINA', 'ETT', 'qualite']
     except KeyError as e:
         print(' /!\ Failed to find annotations in data/image_summary.json, check that a correct path to annotations was given')
         raise e

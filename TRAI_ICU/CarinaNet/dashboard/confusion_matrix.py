@@ -26,7 +26,7 @@ def _plot_confusion_matrix(spacing, compartment_func, display_labels, TEST_ONLY 
                                                 ax = ax,
                                                 display_labels = display_labels)
     except ValueError as e :
-        if 'usually from a call to set_ticks, does not match the number of ticklabels' in str(e):
+        if 'usually from a call to set_ticks, does not match the number of labels' in str(e):
             cmd = ConfusionMatrixDisplay.from_predictions(GT_spacing, pred_spacing,
                                                     cmap = 'Blues', 
                                                     ax = ax)

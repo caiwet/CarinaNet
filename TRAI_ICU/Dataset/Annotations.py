@@ -19,8 +19,10 @@ class Annotations(object):
         self.quality_label = {0: "Barely readable", 1: "Low", 2: "Medium", 3: "Normal", 4:"Unspecified"}
         self._empty_annot = {"ETT": [np.nan, np.nan],"CARINA": [np.nan, np.nan],
                              "zone_labelisee": [[np.nan, np.nan],[np.nan, np.nan]],
-                             "APEX": [[np.nan, np.nan],[np.nan, np.nan]],
-                             "qualite": np.nan, "position": np.nan}
+                            #  "APEX": [[np.nan, np.nan],[np.nan, np.nan]],
+                             "qualite": np.nan, 
+                            #  "position": np.nan
+                             }
 
 
     def _data_summary(self):
@@ -60,7 +62,8 @@ class Annotations(object):
         """Returns the coordinates of the probe for image 'index' in the coordinates of the preprocessed image"""
         return [np.nan if np.isnan(a) else int(a) for a in self._data_summary()[index]['annotations']['ETT']]
     
-    def is_annoted(self, index, fields = ['APEX', 'CARINA', 'ETT']):
+    def is_annoted(self, index, fields = ['CARINA', 'ETT']):
+    # def is_annoted(self, index, fields = ['APEX', 'CARINA', 'ETT']):
         """Checks if at least one of the fields is not NaN in the annotation"""
         if not index in self._data_summary():
             return False
@@ -90,9 +93,10 @@ class Annotations(object):
         return self._ETT_position_label[pos]
     
     def ETT_position(self, index):
-        if np.isnan(self._data_summary()[index]['annotations']['position']):
-            return np.nan
-        return int(self._data_summary()[index]['annotations']['position'])
+        # if np.isnan(self._data_summary()[index]['annotations']['position']):
+        #     return np.nan
+        # return int(self._data_summary()[index]['annotations']['position'])
+        return np.nan
 
     def pos_label(self, index):
         return self.ETT_position_label(self.ETT_position(index))

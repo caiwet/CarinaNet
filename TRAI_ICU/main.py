@@ -49,7 +49,7 @@ def image_augment(indices):
 
 
 def main(indices):
-    if not dataset.INFERENCE_MODE:
+    if dataset.INFERENCE_MODE:
         raise ValueError('/!\ main.py should only be used with INFERENCE_ONLY=False in Dataset/__init__.py')
 
     preprocessing(indices)

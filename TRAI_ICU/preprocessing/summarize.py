@@ -17,7 +17,7 @@ def _get_repositionned_annot(index, preprocessing_summary):
     shift = [x[0] for x in preprocessing_summary[index]['cropping']]
     annotations['ETT'] = _shift_pos(annotations['ETT'], shift)
     annotations['CARINA'] = _shift_pos(annotations['CARINA'], shift)
-    annotations['APEX'] = [_shift_pos(apex, shift) for apex in annotations['APEX']]
+    # annotations['APEX'] = [_shift_pos(apex, shift) for apex in annotations['APEX']]
     return annotations
     
 def _summarize(index, pp_summary):

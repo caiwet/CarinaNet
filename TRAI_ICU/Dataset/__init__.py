@@ -1,7 +1,7 @@
 from Dataset import Dataset
 
 #pth='E:/data/'
-pth='Y:/'
+pth='/n/data1/hms/dbmi/rajpurkar/lab/MAIDA_ETT/hospital_downsized_new/'
 
 
 # =============================================================================
@@ -13,12 +13,13 @@ pth='Y:/'
 # 
 # =============================================================================
 
-
-dataset = Dataset.Dataset(name= 'TRAI_ICU',
-                          path_to_img = f'{pth}TRAI-ICU/images',
+hospital = 'Cedars-Sinai'
+dataset = Dataset.Dataset(name= hospital,
+                          path_to_img = f'{pth}{hospital}/images',
                           annoted = True, #set to True to use the annotations in Dataset/{name}/annotations.json
-                          xls_annot_path = f'{pth}TRAI-ICU/data/TRAI_ICU_v3.xlsx',
-                          pixel_to_mm=0.2,
-                          INFERENCE_MODE=True
+                        #   xls_annot_path = f'{pth}{hospital}/data/TRAI_ICU_v3.xlsx',
+                        #   pixel_to_mm=0.2,
+                          path_to_pixel_spacing = '/home/cat302/ETT-Project/CarinaNet/TRAI_ICU/Dataset/pixel_spacing_Cedars-Sinai.csv',
+                          INFERENCE_MODE=False
                           )
 

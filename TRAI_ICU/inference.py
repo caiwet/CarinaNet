@@ -53,5 +53,8 @@ def main(dirname):
 
 if __name__ == '__main__':
     t0 = time.time()
-    main('../data/example/images/')
+    # main('../data/example/images/')
+    hospital = 'Cedars-Sinai'
+    pth='/n/data1/hms/dbmi/rajpurkar/lab/MAIDA_ETT/hospital_downsized_new/'
+    main(f'{pth}{hospital}/images')
     print(f'TOTAL INFERENCE TIME : {time.time() - t0:.1f}s')

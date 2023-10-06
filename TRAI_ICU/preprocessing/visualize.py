@@ -17,8 +17,8 @@ def _plot_annot(index, data_summary):
     ax.imshow(img, cmap='gray')
     ax.scatter(*annot['CARINA'], c='b', alpha=0.5)
     ax.scatter(*annot['ETT'],c='r',alpha=0.5)
-    for apex in annot['APEX']:
-        ax.scatter(*apex, c='c', alpha=0.5)
+    # for apex in annot['APEX']:
+    #     ax.scatter(*apex, c='c', alpha=0.5)
     plt.title('Ground truth on '+index)
     path = dataset.paths.annot_visu(index)
     dataset.save.savefig(fig, path)
