@@ -56,6 +56,8 @@ def main(indices):
     
     for index in indices:
         clusters = dataset.load.image_augment_clusters(index)
+        if clusters is None:
+            continue
         
         ett_pos = roi_summary[index]['pred_roi'] #predicted position of the ett tip in the roi
         

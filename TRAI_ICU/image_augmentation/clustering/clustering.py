@@ -12,14 +12,19 @@ def _DBSCAN_clustering(edg_binary, index):
 
     X = np.array(np.nonzero(edg_binary)).transpose()
     y_anisotropy = 1
-
+    
     X[:, 1] = X[:, 1]*y_anisotropy
-    eps, min_samples = 5, 10
-    db = sklearn.cluster.DBSCAN(eps=eps, min_samples=min_samples).fit(X)
-    X[:, 1] = X[:, 1] * 1 / y_anisotropy
-    labelled_points = np.column_stack((X, db.labels_))
+    if X.shape[0] > 0:
+        eps, min_samples = 5, 10
+        db = sklearn.cluster.DBSCAN(eps=eps, min_samples=min_samples).fit(X)
+        X[:, 1] = X[:, 1] * 1 / y_anisotropy
+        labelled_points = np.column_stack((X, db.labels_))
+        return labelled_points
+    else:
+        print("The dataset is empty.")
+        return None
 
-    return labelled_points
+    
 
 def _spectral_clusetring(edg_binary, index):
     'actually write it'
@@ -34,6 +39,9 @@ def _clustering(edg_binary, index, METHOD):
 def _run_clustering(indices, METHOD):
     for index in indices:
         edge_map = dataset.load.image_augment_edges(index)
+        # breakpoint()
+        if edge_map is None:
+            continue
         edges = edge_map > np.quantile(edge_map, 0.90)  # foolishly convert to a binary
         
         labelled_points = _clustering(edges, index, METHOD)

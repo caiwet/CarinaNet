@@ -9,7 +9,7 @@ def main(carinaNet_summary, err_dic, spacing):
     
     spacing_test = {key : val for key, val in spacing.items() if key in dataset.test_indices}
 
-    confusion_matrix.plot(spacing_test)    
+    # confusion_matrix.plot(spacing_test)    
 
     position_annot_reader.plot(spacing)
 

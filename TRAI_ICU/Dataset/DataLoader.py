@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import cv2, skimage.transform
 import matplotlib.pyplot as plt
-
+import os
 from . import json_utils
 
 """
@@ -86,15 +86,31 @@ class DataLoader(object):
         return np.load(self.paths.template_matching_map(index))
 
     def ETT_roi(self, index):
+        if not os.path.exists(self.paths.ETT_roi(index)):
+            return None
         return _imread_greyscale(self.paths.ETT_roi(index))
     
     def ETT_detection(self, index):
+        if not os.path.exists(self.paths.ETT_detection(index)):
+            return None
         return np.load(self.paths.ETT_detection(index))
     
     def image_augment_clusters(self, index):
-        return np.load(self.paths.image_augment_clusters(index))
+        if not os.path.exists(self.paths.image_augment_clusters(index)):
+            return None
+        try:
+        # Attempt to load the file with allow_pickle=False
+            return np.load(self.paths.image_augment_clusters(index))
+        except ValueError as e:
+            # If loading fails with allow_pickle=False, check if the error message indicates object array
+            error_message = str(e)
+            if "Object arrays cannot be loaded" in error_message:
+                print(self.paths.image_augment_clusters(index))
+                return None
 
     def image_augment_edges(self, index):
+        if not os.path.exists(self.paths.image_augment_edges(index)):
+            return None
         return cv2.imread(self.paths.image_augment_edges(index),0)
 
     def successful_indices(self, phase, step=''):

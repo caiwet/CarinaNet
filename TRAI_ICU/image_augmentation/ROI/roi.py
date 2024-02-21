@@ -4,7 +4,7 @@ Use the prediction of CarinaNet to get a bounding box of the ETT. This is to be 
 
 import time
 from Dataset import dataset
-
+import math
 
 def _summarize(pred, xmin, ymin, xmax, ymax):
     
@@ -28,7 +28,12 @@ def main(indices):
     roi_summary = dataset.summaries.load('image_augmentation', 'roi')
     
     for index in indices:
+    
         pred = carinaNet_summary[index]['ETT']['pred']
+
+        if any(math.isnan(t) for t in pred) or any(math.isnan(t) for t in pred):
+            pred = [0, 0]
+        
 
         xmin = int(pred[0]-150)
         xmax = int(pred[0]+150)

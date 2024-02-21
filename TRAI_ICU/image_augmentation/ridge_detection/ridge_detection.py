@@ -58,6 +58,9 @@ def run(indices):
     for index in indices:
 
         img = dataset.load.ETT_roi(index)
+        # breakpoint()
+        if img is None:
+            continue
 
         rdg = _detect_ridges(img, sigma = 3)
 
